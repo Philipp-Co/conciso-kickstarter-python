@@ -1,0 +1,12 @@
+# Alle Packete die fuer die Produktion notwendig sind.
+-r production.txt
+
+# Formattierer
+black
+
+# Linter
+mypy
+flake8
+
+# Pre-Commit-Hooks
+pre-commit
