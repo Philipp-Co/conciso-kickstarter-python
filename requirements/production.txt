@@ -1,1 +1,10 @@
 django
+djangorestframework
+
+# openid-connect mit JWT
+djangorestframework-simplejwt[crypto]
+
+# OpenAPI - drf-spectacular
+drf-spectacular
+
+gunicorn
