@@ -1,5 +1,6 @@
 # Python Kickstarter
 
+Aufbau eines Template Projekts in Python.
 todo...
 
 # Entwicklungsumgebung
