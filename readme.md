@@ -63,8 +63,19 @@ Zunaechst sollte die Anwendung gebaut werden
 Den Endpunkt aufrufen...
 ... um alle bekanten Personen zu Listen
 
-    curl -XGET http://localhost:8000/person/
+    curl -XGET http://localhost:8000/persons/
 
 ... um eine Person anzulegen
 
-    curl -XPOST http://localhost:8000/person/ -d '{"name": "Max", "surname": "Mustermann"}'
+    curl -XPOST http://localhost:8000/persons/ -d '{"name": "Max", "surname": "Mustermann"}'
+
+## OpenAPI - openapi.yaml generieren
+
+Die Anwendung hat eine durch Spectacular dokumentierte REST-API. Die Dokumentation kann ich From einer openapi.yaml generiert werden.
+
+    // Die Anwendung wurde im Terminal gestartet
+    ./manage.py spectacular --color --file=./openapi.yaml
+
+    // Die Anwendung wird in der Docker-Compose Umgebung ausgefuehrt
+    ../docker/export-openapi.sh
+    // Nach Aufruf liegt die open-api.yaml Datei unter docker/exchange/openapi.yaml
