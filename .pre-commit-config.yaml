@@ -24,7 +24,7 @@ repos:
     rev: 6.0.0
     hooks:
       - id: flake8
-        args: ['--ignore=E501,D102,D104,D107', --docstring-convecntion, google, --max-line-length, '120']
+        args: ['--ignore=E501,D102,D104,D107', --docstring-convention, google, --max-line-length, '120']
         additional_dependencies: [
           'flake8-blind-except',
           'flake8-docstrings',
