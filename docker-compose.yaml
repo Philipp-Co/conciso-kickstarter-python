@@ -1,0 +1,10 @@
+# Dockerfile for "kickstarter".
+services:
+  # This is the Kickstarter Server which runs a Python Webapplication made with Django.
+  kickstarter:
+    image: kickstarter # Name of Dockerimage.
+    build: # How to build this Image.
+      context: ./
+      dockerfile: ./docker/Dockerfile
+    ports:
+      - 8000:8000 # You can connect via Port 8000 from outside Docker-Compose Environment.

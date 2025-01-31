@@ -35,3 +35,36 @@ Mit
     pre-commit run --all-files
 
 koennen die Dateien im Projekt geprueft werden.
+
+## django
+
+    https://docs.djangoproject.com/en/5.1/intro/tutorial01/
+
+## Anwendung starten und Verwenden
+
+Die Anwendung direkt im Terminal starten:
+
+    // in kickstarter/
+    ./manage.py runserver 0.0.0.0:8000 --settings kickstarter.settings
+
+Die Anwendung über Docker-Compose starten:
+Zunaechst sollte die Anwendung gebaut werden
+
+    // Docker Image bauen
+    docker-compose build kickstarter
+
+    docker image ls | grep kickstarter
+    // Gibt beispielhaafte Ausgebe
+    kickstarter                    latest                  7d8afcecb8c8   5 minutes ago    109MB
+
+    // Docker Umgebung starten
+    docker-compose up kickstarter
+
+Den Endpunkt aufrufen...
+... um alle bekanten Personen zu Listen
+
+    curl -XGET http://localhost:8000/person/
+
+... um eine Person anzulegen
+
+    curl -XPOST http://localhost:8000/person/ -d '{"name": "Max", "surname": "Mustermann"}'
