@@ -5,6 +5,7 @@ from json import loads
 from logging import Logger, getLogger
 from typing import Any, Optional
 
+from drf_spectacular.utils import extend_schema
 from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -33,6 +34,16 @@ class PersonView(APIView):
             data=data,
         )
 
+    @extend_schema(
+        operation_id='hire_unknown_person',
+        # parameters=[],
+        request=HirePersonRequestSerializer,
+        responses={
+            HTTPStatus.OK.value: HirePersonResponseSerializer,
+            HTTPStatus.BAD_REQUEST.value: HirePersonResponseSerializer,
+            HTTPStatus.INTERNAL_SERVER_ERROR.value: HirePersonResponseSerializer,
+        },
+    )
     def post(self, request: Request) -> Response:
         """Hire an unknown person."""
         try:
@@ -73,6 +84,15 @@ class PersonView(APIView):
             {},
         )
 
+    @extend_schema(
+        operation_id='get_known_persons',
+        # parameters=[],
+        # request=,
+        responses={
+            HTTPStatus.OK.value: GetPersonRequestSerializer,
+            HTTPStatus.INTERNAL_SERVER_ERROR.value: GetPersonRequestSerializer,
+        },
+    )
     def get(self, request: Request) -> Response:
         """Return a list of all known peoples."""
         try:
