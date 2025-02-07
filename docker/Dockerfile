@@ -1,4 +1,4 @@
-from python:alpine3.21
+from python:3.10
 
 COPY docker/start.sh /docker/start.sh
 RUN chmod +x /docker/start.sh
