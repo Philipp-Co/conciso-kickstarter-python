@@ -15,12 +15,15 @@ from skillprofil.interfaces.person.person_serializer import (
     HirePersonRequestSerializer,
     HirePersonResponseSerializer,
 )
+from skillprofil.domain.authorization.skillprofil_permission import SkillProfilPermission
 
 # ---------------------------------------------------------------------------------------------------------------------
 
 
 class PersonView(APIView):
     """This Klass implements the API for hiring peoples."""
+
+    permission_classes = [SkillProfilPermission]
 
     def __init__(self, *args, logger: Optional[Logger] = None, **kwargs):
         super().__init__(*args, **kwargs)

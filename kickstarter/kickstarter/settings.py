@@ -133,13 +133,27 @@ LOGGING = {
     },
     "root": {
         "handlers": ["console"],
-        "level": os.environ.get('KICKSTARTER_LOG_LEVEL', 'INFO'),
+        "level": os.environ.get('KICKSTARTER_LOG_LEVEL', 'DEBUG'),
     },
 }
 
 # djangorestframework
 REST_FRAMEWORK = {
-    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema', # openapi
+    'DEFAULT_PERMISSION_CLASSES': [],
+    'DEFAULT_AUTHENTICATION_CLASSES': ['rest_framework_simplejwt.authentication.JWTStatelessUserAuthentication'],
+    #'DEFAULT_AUTHENTICATION_CLASSES': ['rest_framework_simplejwt.authentication.JWTAuthentication'],
+    'DEFAULT_PARSES_CLASSES': ['rest_framework.parsers.JSONParser'],
+}
+
+SIMPLE_JWT = {
+    'ALGORITHM': 'HS256',
+    'JWK_URL': 'http://localhost:8080/realms/skillprofil/protocol/openid-connect/certs',
+    'USER_ID_CLAIM': 'sub',
+    'TOKEN_TYPE_CLAIM': None,
+    'TOKEN_USER_CLASS': 'skillprofil.domain.authorization.skillprofil_user.SkillprofilUser',
+    'AUTH_HEADER_TYPES': ('Bearer', ),
+    'AUTH_HEADER_NAME': 'HTTP_AUTHORIZATION',
 }
 
 SPECTACULAR_SETTINGS = {

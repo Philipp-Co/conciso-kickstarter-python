@@ -10,6 +10,3 @@ flake8
 
 # Pre-Commit-Hooks
 pre-commit
-
-# OpenAPI - drf-spectacular
-drf-spectacular
