@@ -1,0 +1,150 @@
+openapi: 3.0.3
+info:
+  title: Kickstarter
+  version: 1.0.0
+  description: This is a Python Kickstarter. This code can be used to kickstart any
+    Webapplication Project.
+paths:
+  /person/:
+    get:
+      operationId: get_known_persons
+      description: Return a list of all known peoples.
+      tags:
+      - person
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetPersonRequest'
+          description: ''
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetPersonRequest'
+          description: ''
+    post:
+      operationId: hire_unknown_person
+      description: Hire an unknown person.
+      tags:
+      - person
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HirePersonRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/HirePersonRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/HirePersonRequest'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HirePersonResponse'
+          description: ''
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HirePersonResponse'
+          description: ''
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HirePersonResponse'
+          description: ''
+components:
+  schemas:
+    GetPersonRequest:
+      type: object
+      description: Serializer.
+      properties:
+        persons:
+          type: array
+          items:
+            $ref: '#/components/schemas/Person'
+      required:
+      - persons
+    HirePersonRequest:
+      type: object
+      description: Serializer.
+      properties:
+        name:
+          type: string
+        surname:
+          type: string
+        skills:
+          type: array
+          items:
+            $ref: '#/components/schemas/Skill'
+          default: []
+      required:
+      - name
+      - surname
+    HirePersonResponse:
+      type: object
+      description: Serializer.
+      properties:
+        return_value:
+          type: integer
+        description:
+          type: string
+      required:
+      - description
+      - return_value
+    Person:
+      type: object
+      description: Serializer.
+      properties:
+        name:
+          type: string
+        surname:
+          type: string
+        skills:
+          type: array
+          items:
+            $ref: '#/components/schemas/Skill'
+          default: []
+      required:
+      - name
+      - surname
+    Skill:
+      type: object
+      description: Serializer.
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        points:
+          type: integer
+        domain:
+          type: string
+      required:
+      - description
+      - domain
+      - name
+      - points
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: sessionid

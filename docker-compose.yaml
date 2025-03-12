@@ -7,7 +7,27 @@ services:
     build: # How to build this Image.
       context: ./
       dockerfile: ./docker/Dockerfile
+    environment:
+      - KICKSTARTER_IAM_HOST=http://iam:8080/
+      - KICKSTARTER_LOG_LEVEL=DEBUG
     ports:
       - 8000:8000 # You can connect via Port 8000 from outside Docker-Compose Environment.
     volumes:
       - ./docker/exchange:/exchange
+  iam:
+    container_name: iam
+    image: quay.io/keycloak/keycloak:23.0
+    command: [start-dev, --import-realm, --log-level=info]
+    environment:
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=admin
+      - KC_HEALTH_TH_ENABLED=true
+    volumes:
+      - ./docker/keycloak/data/import/:/opt/keycloak/data/import/
+    ports:
+      - 8080:8080
+    healthcheck:
+      test: ["CMD-SHELL", "exec 3<>/dev/tcp/127.0.0.1/8080;echo -e \"GET /health/ready HTTP/1.1\r\nhost: http://localhost\r\nConnection: close\r\n\r\n\" >&3;grep \"HTTP/1.1 200 OK\" <&3"]
+      interval: 1s
+      timeout: 5s
+      retries: 100

@@ -5,22 +5,31 @@ from json import loads
 from logging import Logger, getLogger
 from typing import Any, Optional
 
+from drf_spectacular.utils import extend_schema
 from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from skillprofil.domain.human_ressources.human_ressources import Domain, HirePersonResult, HumanResources, PersonRepr, SkillRepr
+from skillprofil.domain.authorization.skillprofil_permission import SkillProfilPermission
+from skillprofil.domain.human_ressources.human_ressources import (
+    Domain,
+    HirePersonResult,
+    HumanResources,
+    PersonRepr,
+    SkillRepr,
+)
 from skillprofil.interfaces.person.person_serializer import (
     GetPersonRequestSerializer,
     HirePersonRequestSerializer,
     HirePersonResponseSerializer,
 )
-from drf_spectacular.utils import extend_schema
 
 # ---------------------------------------------------------------------------------------------------------------------
 
 
 class PersonView(APIView):
     """This Klass implements the API for hiring peoples."""
+
+    permission_classes = [SkillProfilPermission]
 
     def __init__(self, *args, logger: Optional[Logger] = None, **kwargs):
         super().__init__(*args, **kwargs)

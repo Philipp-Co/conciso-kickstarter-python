@@ -3,3 +3,6 @@ djangorestframework
 
 # OpenAPI - drf-spectacular
 drf-spectacular
+
+# openid-connect mit JWT
+djangorestframework-simplejwt[crypto]
