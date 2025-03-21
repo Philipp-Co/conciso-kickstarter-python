@@ -1,0 +1,63 @@
+@startuml
+skinparam sequenceMessageAlign right
+
+Actor User
+
+box "Django Webserver"
+User -> "pv: PersonView"
+activate "pv: PersonView"
+' Start Procedure.
+"pv: PersonView" -> "hrw: HiringService": _init_()
+
+' Init start.
+activate "hrw: HiringService"
+"hrw: HiringService" -> "dp: DjangoPersistence": _init_()
+end box
+box "Kickstarter Business Logic"
+activate "dp: DjangoPersistence"
+"dp: DjangoPersistence" --> "hrw: HiringService"
+deactivate "dp: DjangoPersistence"
+"hrw: HiringService" -> "hr: dbl.HumanRessources": _init_(dp)
+activate "hr: dbl.HumanRessources"
+"hr: dbl.HumanRessources" --> "hrw: HiringService"
+deactivate "hr: dbl.HumanRessources"
+"hrw: HiringService" --> "pv: PersonView"
+deactivate "hrw: HiringService"
+' Init done.
+
+' Call Businessfunction.
+"pv: PersonView" -> "hrw: HiringService": hire(data)
+activate "hrw: HiringService"
+
+"hrw: HiringService" -> "pr: dbl.PersonRepr": _init_(data)
+activate "pr: dbl.PersonRepr"
+"pr: dbl.PersonRepr" --> "hrw: HiringService"
+deactivate "pr: dbl.PersonRepr"
+
+"hrw: HiringService" -> "hr: dbl.HumanRessources": hire(pr)
+activate "hr: dbl.HumanRessources"
+' Use Callback to interact with Persistance Layer.
+"hr: dbl.HumanRessources" -> "dp: DjangoPersistence": find_person_by_name(pr.name, pr.surname)
+activate "dp: DjangoPersistence"
+"dp: DjangoPersistence" --> "hr: dbl.HumanRessources": npr: dbl.PersonRepr
+deactivate "dp: DjangoPersistence"
+
+alt#White #LightBlue npr != None
+"hr: dbl.HumanRessources" -> "dp: DjangoPersistence": persist_person(npr)
+activate "dp: DjangoPersistence"
+"dp: DjangoPersistence" --> "hr: dbl.HumanRessources": a
+deactivate "dp: DjangoPersistence"
+"hr: dbl.HumanRessources" --> "hrw: HiringService": b=a
+else #Pink
+"hr: dbl.HumanRessources" --> "hrw: HiringService": b=False
+end
+deactivate "hr: dbl.HumanRessources"
+end box
+
+"hrw: HiringService" --> "pv: PersonView": b
+deactivate "hrw: HiringService"
+
+"pv: PersonView" --> User: b
+deactivate "pv: PersonView"
+
+@enduml
