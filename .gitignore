@@ -1,6 +1,9 @@
 # Created by https://www.toptal.com/developers/gitignore/api/linux,python,windows,visualstudiocode,vim,macos
 # Edit at https://www.toptal.com/developers/gitignore?templates=linux,python,windows,visualstudiocode,vim,macos
 
+*/dist/*
+*/kickstarter_business_logic.egg-info/*
+
 docker/keycloak/*
 
 ## docker volume mapping

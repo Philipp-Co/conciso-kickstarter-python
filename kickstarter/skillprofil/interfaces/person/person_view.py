@@ -10,18 +10,18 @@ from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from skillprofil.domain.authorization.skillprofil_permission import SkillProfilPermission
-from skillprofil.domain.human_ressources.human_ressources import (
-    Domain,
-    HirePersonResult,
-    HumanResources,
-    PersonRepr,
-    SkillRepr,
+from skillprofil.domain.human_ressources.human_ressources_persistance import (
+    DjangoPersistance,
+    IHumanResourcesPersistance,
 )
 from skillprofil.interfaces.person.person_serializer import (
     GetPersonRequestSerializer,
     HirePersonRequestSerializer,
     HirePersonResponseSerializer,
 )
+
+from kickstarter_business_logic.human_ressources.human_ressource_types import PersonRepr, SkillRepr
+from kickstarter_business_logic.human_ressources.human_ressources import HirePersonResult, HumanResources
 
 # ---------------------------------------------------------------------------------------------------------------------
 
@@ -61,7 +61,10 @@ class PersonView(APIView):
             )
             if request_serializer.is_valid():
                 parsed_data = request_serializer.data
-                result: HirePersonResult = HumanResources(self.__logger.getChild('Human Ressources')).hire(
+                result: HirePersonResult = HumanResources(
+                    self.__logger.getChild('Human Ressources'),
+                    persistance=DjangoPersistance(),
+                ).hire(
                     PersonRepr(
                         name=parsed_data['name'],
                         surname=parsed_data['surname'],
@@ -114,7 +117,10 @@ class PersonView(APIView):
         """Return a list of all known peoples."""
         try:
             self.__logger.info('Requested all persons...')
-            hr: HumanResources = HumanResources(self.__logger.getChild('Human Ressources'))
+            hr: HumanResources = HumanResources(
+                self.__logger.getChild('Human Ressources'),
+                persistance=DjangoPersistance(),
+            )
             serializer: GetPersonRequestSerializer = GetPersonRequestSerializer(
                 data={'persons': [person.to_dict() for person in hr.persons()]}
             )
