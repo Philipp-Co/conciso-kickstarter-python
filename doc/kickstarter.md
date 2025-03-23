@@ -13,11 +13,7 @@ Der Kern der Anwendung soll in einem importierbaren Pythonpacket ausgelagert zur
 
 # 3. Kontext und Umfang
 
-Grenzt Ihr System von seinen (externen) Kommunikationspartnern (benachbarten Systemen und Benutzern) ab.
-Spezifiziert die externen Schnittstellen.
-Aus einer geschäftlichen/fachlichen Perspektive dargestellt (immer) oder aus technischer Perspektive (optional).
-
-https://docs.arc42.org/section-3/
+![alt text](img/context_anwendung.png)
 
 In diesem Szenario existieren zwei Domaenen:
 
@@ -29,13 +25,14 @@ Human Ressources verwalten die Angestellten und weisen sie einem Projekt zu.
 Daraus ergeben sich die folgenden Usecases.
 ![alt text](img/usecase_anwendung.png)
 
+
 # 4. Loesungsstrategien
 
-Zusammenfassung der grundlegenden Entscheidungen und Lösungsstrategien, die die Architektur prägen.
-Kann die Technologie, die oberste Ebenendekomposition,
-Ansätze zur Erreichung der wichtigsten Qualitätsziele und relevante organisatorische Entscheidungen umfassen.
+![alt text](img/context_anwendung_techn.png)
 
 In diesem Projekt wird eine Webanwendung entwickelt, die auf eine als Bibliothek gelieferte fachliche Logik zugreift.
+Die Schnittstellen der Anwendung sollen durch eine Authentifizierung und Autorisierung abgesichert sein. 
+
 ![alt text](img/class_fachliches_modell.png)
 
 # Zerlegung der Anwendung

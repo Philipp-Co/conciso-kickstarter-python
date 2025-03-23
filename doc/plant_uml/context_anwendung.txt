@@ -1,0 +1,20 @@
+@startuml
+
+left to right direction
+
+actor AccountManager
+actor HumanRessourceManager
+
+database AccountManagementDatenbank
+database HumanRessourceManagementDatenbank
+
+agent Kickstarter
+
+AccountManager --> Kickstarter
+HumanRessourceManager --> Kickstarter
+
+Kickstarter --> AccountManagementDatenbank
+Kickstarter --> HumanRessourceManagementDatenbank
+
+@enduml
+
