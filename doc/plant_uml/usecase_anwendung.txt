@@ -17,11 +17,13 @@ package "Human Ressource Management" {
     usecase "Daten eines Angestellten aendern" as UC21
     usecase "Angestellten einem Projekt zuweisen" as UC22
     usecase "Angestellten aus einem Projekt entfernen" as UC23
+    usecase "Skillprofil erstellen" as UC24
 }
 
 AccountManager -> UC10
 AccountManager -> UC11
 AccountManager -> UC12
+AccountManager -> UC24
 
 HumanRessourceManager -> UC20
 HumanRessourceManager -> UC21
