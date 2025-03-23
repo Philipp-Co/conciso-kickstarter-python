@@ -44,20 +44,8 @@ class HumanRessourceManagement {
     add_skill(identification: str, s: List[Skill]): PersistenceResult
 }
 
-class Skillprofile {
-    employee: Employee
-    projects: List[Project]
-    to_markdown(): str
-}
-
-class SkillprofileService {
-    create_profile(identification: str): Skillprofile
-}
-
 AccountManagement --> IAccountManagementPersistence
 HumanRessourceManagement --> IHumanRessourceManagementPersistence
-SkillprofileService --> AccountManagement
-SkillprofileService --> HumanRessourceManagement
 
 @enduml
 
