@@ -5,18 +5,13 @@ package "Kickstarter Business Logic" {
 }
 
 node "Kickstarter" {
-    [AccountManagement]
-    [HumanRessources]
-}
-
-database "Database" {
-    [Entitätenmodel - Kickstarter]
+    component Kickstarter {
+        [AccountManagement]
+        [HumanRessources]
+    }
 }
 
 [HumanRessources] --> [Fachlogik]
 [AccountManagement] --> [Fachlogik]
-[HumanRessources] --> [Entitätenmodel - Kickstarter]
-[AccountManagement] --> [Entitätenmodel - Kickstarter]
 
 @enduml
-
