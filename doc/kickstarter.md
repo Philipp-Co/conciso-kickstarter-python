@@ -37,26 +37,23 @@ Die Schnittstellen der Anwendung sollen durch eine Authentifizierung und Autoris
 
 # Zerlegung der Anwendung
 
-![alt text](img/component_kickstarter.png)
-
 Die Anwendung wird in mehrere Teile Zerlegt.
     1. Eine Django Webanwendung mit zwei Apps.
         1.1 Employees - Kuemmert sich um die Verwaltung von Angestellten.
         1.2 Skillprofil - Kuemmert sich um die Pflege und Dokumentation der Faehigkeiten Angestellter.
     2. Die Fachlogik, die das Verhalten umsetzt.
+![alt text](img/component_kickstarter.png)
 
 # kickstarter/
 
-Eine Webanwendung, umgesetzt mit Hilfe von Django, die eine Django App "Skillprofil" und eine Django App "Employees" bereit stellt.
+Eine Webanwendung, umgesetzt mit Hilfe von Django, die eine Django App "human_ressources_management" und eine Django App "account_management" bereit stellt.
 Die Webanwendung stellt die notwendigen REST Endpunkte bereit um mit dem Fachmodell zu interagieren.
 Die beiden Django Apps stellen zusaetzlich eine Persistenzschicht fuer den Zugang zum Entitaetenmodell bereit.
 
 # kickstarter_business_logic/
 
 Enthaelt eine installierbare Bilbiothek mit der Fachlogik.
-Die Fachlogik enthaelt Funktionen zum Verwalten von Angestellten und modelliert den Ablauf beim erstellen von Skillprofilen.
-
-https://docs.arc42.org/section-4/
+Die Fachlogik modelliert den fachlichen Prozess der Verwaltung von Kunden, deren Projekten und der Verwaltung von eigenen Mitarbeitern und ihren Faehigkeiten.
 
 # 5. Bausteinsicht
 

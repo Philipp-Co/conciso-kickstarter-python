@@ -1,21 +1,22 @@
 @startuml
 
 package "Kickstarter Business Logic" {
-  [HumanRessources]
+  [Fachlogik]
 }
 
 node "Kickstarter" {
-    [Employees]
-    [Skillprofil]
+    [AccountManagement]
+    [HumanRessources]
 }
 
 database "Database" {
     [Entitätenmodel - Kickstarter]
 }
 
-[Employees] --> [HumanRessources]
-[Skillprofil] --> [HumanRessources]
-[Employees] --> [Entitätenmodel - Kickstarter]
-[Skillprofil] --> [Entitätenmodel - Kickstarter]
+[HumanRessources] --> [Fachlogik]
+[AccountManagement] --> [Fachlogik]
+[HumanRessources] --> [Entitätenmodel - Kickstarter]
+[AccountManagement] --> [Entitätenmodel - Kickstarter]
 
 @enduml
+
