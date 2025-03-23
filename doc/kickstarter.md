@@ -42,6 +42,7 @@ Die Anwendung wird in mehrere Teile Zerlegt.
         1.1 Employees - Kuemmert sich um die Verwaltung von Angestellten.
         1.2 Skillprofil - Kuemmert sich um die Pflege und Dokumentation der Faehigkeiten Angestellter.
     2. Die Fachlogik, die das Verhalten umsetzt.
+
 ![alt text](img/component_kickstarter.png)
 
 # kickstarter/
@@ -57,9 +58,10 @@ Die Fachlogik modelliert den fachlichen Prozess der Verwaltung von Kunden, deren
 
 # 5. Bausteinsicht
 
-Statische Zerlegung des Systems, Abstraktionen des Quellcodes, dargestellt als Hierarchie von weißen Kästen (die schwarze Kästen enthalten), bis zum geeigneten Detaillierungsgrad.
+# kickstarter_business_logic
 
-https://docs.arc42.org/section-5/
+![alt text](img/class_fachlogik.png)
+
 
 # 6. Laufzeitsicht
 

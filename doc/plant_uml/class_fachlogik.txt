@@ -1,0 +1,63 @@
+@startuml
+
+enum PersistenceResultEnum {
+    ...
+}
+
+class PersistenceResult {
+    value: PersistenceResultEnum
+    description: str
+}
+
+interface IAccountManagementPersistence {
+    customers(): List[Customer]
+    customer(identification: str): Optional[Customer]
+    persist_customer(c: Customer): PersistenceResult
+    projects(): List[Project]
+    project(identification: str): Optional[Project]
+    persist_project(p: Project): PersistenceResult
+}
+
+interface IHumanRessourceManagementPersistence {
+    employees(): List[Employee]
+    employee(identification: str): Optional[Employee]
+    persist_employee(e: Employee): PersistenceResult
+    delete_employee(identification: str): PersistenceResult
+}
+
+class AccountManagement {
+    customers(): List[Customer]
+    add_customer(c: Customer)
+    
+    projects(): List[Project]
+    add_project(p: Project, c: Customer): PersistenceResult
+    delete_project(identification: str): PersistenceResult
+    start_project(identification: str, timestamp: datetime): PersistenceResult
+    close_project(identification: str, timestamp: datetime): PersistenceResult
+}
+
+class HumanRessourceManagement {
+    employees(): List[Employee]
+    employee(identification: str): Optional[Employee]
+    add_employee(e: Employee): PersistenceResult
+    delete_employee(identification: str): PersistenceResult
+    add_skill(identification: str, s: List[Skill]): PersistenceResult
+}
+
+class Skillprofile {
+    employee: Employee
+    projects: List[Project]
+    to_markdown(): str
+}
+
+class SkillprofileService {
+    create_profile(identification: str): Skillprofile
+}
+
+AccountManagement --> IAccountManagementPersistence
+HumanRessourceManagement --> IHumanRessourceManagementPersistence
+SkillprofileService --> AccountManagement
+SkillprofileService --> HumanRessourceManagement
+
+@enduml
+
