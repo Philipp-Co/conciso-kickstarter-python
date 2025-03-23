@@ -1,0 +1,40 @@
+@startuml
+
+enum Domain {
+    PRAGMATIC_DEVELOPMENT,
+    VIABLE_ARCHITECTURE,
+    AGILE_ADVISORY
+}
+
+class Employee {
+    employee_identification_number: int
+    firstname: str
+    surname: str
+}
+
+class Customer {
+    customer_identification: str
+    name: str
+    description: str
+}
+
+class Project {
+    project_identification: str
+    name: str
+    description: str
+    start: datetime
+    end: datetime
+}
+
+class Skill {
+    domain: Domain
+    name: str
+    description: str
+    points: int
+}
+
+Employee "1" --> "*" Skill
+Customer "1" --> "1..*" Project
+Employee "*" -- "*" Project
+
+@enduml
