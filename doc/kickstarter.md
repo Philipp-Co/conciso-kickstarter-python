@@ -20,6 +20,7 @@ Aus einer geschäftlichen/fachlichen Perspektive dargestellt (immer) oder aus te
 https://docs.arc42.org/section-3/
 
 In diesem Szenario existieren zwei Domaenen:
+
     - Account Management
     - Human Ressources
 
