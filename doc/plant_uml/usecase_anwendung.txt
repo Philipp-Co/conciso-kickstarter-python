@@ -1,0 +1,32 @@
+@startuml
+
+left to right direction
+
+actor AccountManager
+actor HumanRessourceManager
+
+package "Account Management" {
+    usecase "Kunden anlegen" as UC10
+    usecase "Projekt anlegen" as UC11
+    usecase "Projektdaten aendern" as UC12
+    usecase "Projekte abfragen" as UC13
+}
+
+package "Human Ressource Management" {
+    usecase "Angestellten anlegen" as UC20
+    usecase "Daten eines Angestellten aendern" as UC21
+    usecase "Angestellten einem Projekt zuweisen" as UC22
+    usecase "Angestellten aus einem Projekt entfernen" as UC23
+}
+
+AccountManager -> UC10
+AccountManager -> UC11
+AccountManager -> UC12
+
+HumanRessourceManager -> UC20
+HumanRessourceManager -> UC21
+HumanRessourceManager -> UC22
+HumanRessourceManager -> UC23
+HumanRessourceManager -> UC13
+
+@enduml

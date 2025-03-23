@@ -26,6 +26,8 @@ In diesem Szenario existieren zwei Domaenen:
 
 Das Account Management kuemmert sich um Kunden und die von ihnen beauftragten Projekte.
 Human Ressources verwalten die Angestellten und weisen sie einem Projekt zu.
+Daraus ergeben sich die folgenden Usecases.
+![alt text](img/usecase_anwendung.png)
 
 # 4. Loesungsstrategien
 
