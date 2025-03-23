@@ -1,0 +1,58 @@
+@startuml
+
+package "kickstarter" {
+
+    package "interfaces" {
+        package "human_ressource_management" {
+            class EmployeeListView {}
+            class EmployeeView {}
+        }
+            
+        package "account_management" {
+            class AccountListView {}
+            class AccountView {}
+        }
+            
+        package "skillprofile" {
+            class SkillprfileView {}
+        }
+    }
+        
+    package "domain" {
+        class EmployeeService {}
+        class AccountService {}
+        class SkillprofileService {}
+        
+        AccountService --> kickstarter_business_logic.AccountManagement
+        EmployeeService --> kickstarter_business_logic.HumanRessourceManagement
+        SkillprofileService --> AccountService
+        SkillprofileService --> EmployeeService
+    }
+        
+    package "model" {
+        class EmployeePersistence {}
+        EmployeePersistence --|> kickstarter_business_logic.IEmployeePersistence
+        class Employee {}
+        class Skill {}
+        Employee "1" --> "*" Skill
+        class AccountPersistence {}
+        AccountPersistence --|> kickstarter_business_logic.IAccountPersistence
+        class Customer {}
+        class Project {}
+        Customer "1..*" --> "*" Project
+    }
+        
+        EmployeeListView --> EmployeeService
+        EmployeeView --> EmployeeService
+        AccountListView --> AccountService
+        AccountView --> AccountService
+        SkillprfileView --> SkillprofileService
+        
+        EmployeeService --> EmployeePersistence
+        AccountService --> AccountPersistence
+        AccountPersistence --> Customer
+        EmployeePersistence --> Employee
+    }
+}
+
+@enduml
