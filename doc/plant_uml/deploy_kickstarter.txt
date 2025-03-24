@@ -1,0 +1,31 @@
+@startuml
+
+node "<<device0>>" {
+    package "kickstarter" {
+        [human_ressource_management]
+        [account_management]
+        [skillprofile]
+    }
+}
+
+node "<<device1>>" {
+    database "postgres" {
+        [human_ressource_management - Entitymodel]
+        [account_management - Entitymodel]
+    }
+}
+
+node "<<device2>>" {
+    [Keycloak]
+}
+
+human_ressource_management --> "human_ressource_management - Entitymodel"
+account_management --> "account_management - Entitymodel"
+
+human_ressource_management --> Keycloak
+account_management --> Keycloak
+skillprofile --> Keycloak
+
+@enduml
+
+

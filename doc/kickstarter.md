@@ -77,10 +77,7 @@ https://docs.arc42.org/section-6/
 
 # 7. Bereitstellungssicht
 
-Technische Infrastruktur mit Umgebungen, Computern, Prozessoren, Topologien.
-Zuordnung von (Software-)Bausteinen zu Infrastrukturelementen.
-
-https://docs.arc42.org/section-7/
+![alt text](img/class_webanwendung.png)
 
 # 8. Uebergreifende Belange / Crosscutting Concerns
 
