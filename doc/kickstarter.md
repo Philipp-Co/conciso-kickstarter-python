@@ -77,7 +77,7 @@ https://docs.arc42.org/section-6/
 
 # 7. Bereitstellungssicht
 
-![alt text](img/class_webanwendung.png)
+![alt text](img/deploy_kickstarter.png)
 
 # 8. Uebergreifende Belange / Crosscutting Concerns
 
