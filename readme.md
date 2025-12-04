@@ -68,3 +68,12 @@ Den Endpunkt aufrufen...
 ... um eine Person anzulegen
 
     curl -XPOST http://localhost:8000/person/ -d '{"name": "Max", "surname": "Mustermann"}'
+
+## Testen
+
+### Systemtest
+
+Um einen Systemtest durchzufuehren kann das Systemtest-Kommando verwendet werden. Fuer die Systemtests muss die Anwendung bereits in einer Docker-Compose Umgebung laufen.
+Folgende Schritte sind daher notwendig um die Systemtests zu starten.
+
+    docker-compose up -d && sleep 2 && ./manage.py systemtest

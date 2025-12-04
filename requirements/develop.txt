@@ -10,3 +10,9 @@ flake8
 
 # Pre-Commit-Hooks
 pre-commit
+
+# docker
+docker
+
+# test
+requests
